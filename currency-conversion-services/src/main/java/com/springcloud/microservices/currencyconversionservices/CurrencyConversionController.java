@@ -34,18 +34,12 @@ public class CurrencyConversionController {
 		
 		CurrencyConversionBean response = responseEntity.getBody();
 		
-		System.out.println("response : " + response);
-//		BigDecimal total = quantity.multiply(response.getConversionMultiple());
-//		System.out.println("response:"+response.getConversionMultiple());
-//		System.out.println(response.getId()+"::"+quantity.multiply(response.getConversionMultiple()));
-		
-		
-		return new CurrencyConversionBean(response.getId(), from, to, 
-				response.getConversionMultiple(), quantity, 
-				//quantity.multiply(response.getConversionMultiple()), 
-				//above will report a null pointer exception, results in a 500 error
-				new BigDecimal(5555),
-				response.getPort());
+//		System.out.println("response : " + response);
+//		System.out.println("response conversion multiple:"+response.getConversionMultiple());
+//		System.out.println("response port:"+response.getPort());
+
+		return new CurrencyConversionBean(response.getId(), from, to, response.getConversionMultiple(), quantity,
+				quantity.multiply(response.getConversionMultiple()), response.getPort());		
 	}
 	
 	
@@ -58,16 +52,8 @@ public class CurrencyConversionController {
 		CurrencyConversionBean response = proxy.retrieveExchangeValue(from, to);
 		
 		System.out.println("response : " + response);
-//		BigDecimal total = quantity.multiply(response.getConversionMultiple());
-//		System.out.println("response:"+response.getConversionMultiple());
-//		System.out.println(response.getId()+"::"+quantity.multiply(response.getConversionMultiple()));
-		
-		
-		return new CurrencyConversionBean(response.getId(), from, to, 
-				response.getConversionMultiple(), quantity, 
-				//quantity.multiply(response.getConversionMultiple()), 
-				//above will report a null pointer exception, results in a 500 error
-				new BigDecimal(5555),
-				response.getPort());
+
+		return new CurrencyConversionBean(response.getId(), from, to, response.getConversionMultiple(), quantity,
+				quantity.multiply(response.getConversionMultiple()), response.getPort());	
 	}
 }
